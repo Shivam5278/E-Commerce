@@ -40,6 +40,7 @@ const ProductDetails = () => {
         <Loader />
       ) : (
         <Fragment>
+          <MetaData title={`${product.name}-- Ecommerce`} />
           <div className="ProductDetails">
             <div>
               <Carousel>
