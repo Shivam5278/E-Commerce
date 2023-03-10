@@ -1,8 +1,15 @@
 import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import logo from "../../../images/logo.png";
+import { MdAccountCircle, MdSearch, MdAddShoppingCart } from "react-icons/md";
 
 const options = {
+  profileIcon: true,
+  ProfileIconElement: MdAccountCircle,
+  searchIcon: true,
+  SearchIconElement: MdSearch,
+  cartIcon: true,
+  CartIconElement: MdAddShoppingCart,
   burgerColorHover: "#eb4034",
   logo,
   logoWidth: "20vmax",
