@@ -13,6 +13,7 @@ import Search from "./component/Product/Search.jsx";
 import LoginSignup from "./component/User/LoginSignup";
 import Profile from "./component/User/Profile.jsx";
 import UpdatePassword from "./component/User/UpdatePassword.jsx";
+import ResetPassword from "./component/User/ResetPassword.jsx";
 import UpdateProfile from "./component/User/UpdateProfile.jsx";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
@@ -71,6 +72,11 @@ function App() {
           }
         />
         <Route exact path="/password/forgot" element={<ForgotPassword />} />
+        <Route
+          exact
+          path="/password/reset/:token"
+          element={<ResetPassword />}
+        />
 
         <Route exact path="/login" element={<LoginSignup />} />
       </Routes>

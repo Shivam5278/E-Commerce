@@ -5,6 +5,8 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail.js");
 const cloudinary = require("cloudinary");
 
+const crypto = require("crypto");
+
 //Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
@@ -78,11 +80,9 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/api/v1/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}password/reset/${resetToken}`;
 
-  const message = `Your password reset token is:- \n\n ${resetPasswordUrl} \n\n If you have not requested for password reset, please ignore it.`;
+  const message = `Your password rzaeset token is:- \n\n ${resetPasswordUrl} \n\n If you have not requested for password reset, please ignore it.`;
 
   try {
     await sendEmail({
