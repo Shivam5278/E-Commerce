@@ -9,10 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const LoginSignUp = ({ history, location }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const [searchParams] = useSearchParams();
 
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
@@ -69,8 +71,8 @@ const LoginSignUp = ({ history, location }) => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-
-  const redirect = "/account";
+  console.log(searchParams);
+  const redirect = searchParams ? searchParams.get("redirect") : "/account";
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {
