@@ -49,7 +49,7 @@ const UpdatePassword = () => {
         type: UPDATE_PASSWORD_RESET,
       });
     }
-  }, [dispatch, error, alert, isUpdated]);
+  }, [dispatch, error, alert, navigate, isUpdated]);
 
   return (
     <Fragment>

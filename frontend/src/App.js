@@ -26,6 +26,8 @@ import Payment from "./component/Cart/Payment.jsx";
 import Shipping from "./component/Cart/Shipping.jsx";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.jsx";
 import OrderSuccess from "./component/Cart/OrderSuccess.jsx";
+import MyOrders from "./component/Order/MyOrders.jsx";
+import OrderDetails from "./component/Order/OrderDetails.jsx";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -104,6 +106,24 @@ function App() {
           element={
             <Protected isAuthenticated={isAuthenticated}>
               <ConfirmOrder />
+            </Protected>
+          }
+        />
+        <Route
+          exact
+          path="/orders"
+          element={
+            <Protected isAuthenticated={isAuthenticated}>
+              <MyOrders />
+            </Protected>
+          }
+        />
+        <Route
+          exact
+          path="/order/:id"
+          element={
+            <Protected isAuthenticated={isAuthenticated}>
+              <OrderDetails />
             </Protected>
           }
         />

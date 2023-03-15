@@ -22,7 +22,7 @@ const categories = [
   "SmartPhones",
 ];
 
-const Products = ({ match }) => {
+const Products = () => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
