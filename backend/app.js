@@ -7,9 +7,11 @@ const dotenv = require("dotenv");
 
 const errorMiddleware = require("./middleware/error");
 dotenv.config({ path: "backend/config/config.env" });
-app.use(express.json());
+
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(express.json());
 app.use(fileUpload());
 // Route imports
 const product = require("./routes/productRoute");
