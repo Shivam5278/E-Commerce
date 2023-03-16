@@ -11,7 +11,7 @@ import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
-const LoginSignUp = ({ history, location }) => {
+const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const [searchParams] = useSearchParams();
@@ -35,8 +35,12 @@ const LoginSignUp = ({ history, location }) => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("/Profile.png");
-  const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+  const [avatar, setAvatar] = useState(
+    "https://cdn.iconscout.com/icon/premium/png-512-thumb/profile-2694070-2235987.png?f=avif&w=256"
+  );
+  const [avatarPreview, setAvatarPreview] = useState(
+    "https://cdn.iconscout.com/icon/premium/png-512-thumb/profile-2694070-2235987.png?f=avif&w=256"
+  );
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -71,8 +75,7 @@ const LoginSignUp = ({ history, location }) => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-  console.log(searchParams);
-  const redirect = searchParams ? searchParams.get("redirect") : "/account";
+  const redirect = "/account"; //searchParams ? searchParams.get("redirect") :
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {

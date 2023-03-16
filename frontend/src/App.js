@@ -86,164 +86,41 @@ function App() {
         <Route exact path="/contact" element={<Contact />} />
         <Route
           exact
-          path="/account"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <Profile />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/me/update"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <UpdateProfile />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/password/update"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <UpdatePassword />
-            </Protected>
-          }
-        />
-        <Route
-          exact
           path="/password/reset/:token"
           element={<ResetPassword />}
         />
-        <Route
-          exact
-          path="/shipping"
-          element={
-            <Protected>
-              <Shipping />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/order/confirm"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <ConfirmOrder />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/orders"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <MyOrders />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/order/:id"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <OrderDetails />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/success"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <OrderSuccess />
-            </Protected>
-          }
-        />
 
-        {/* Admin Routes */}
+        <Route element={<Protected isAuthenticated={isAuthenticated} />}>
+          <Route path="/account" element={<Profile />} />
+          <Route path="/me/update" element={<UpdateProfile />} />
+          <Route path="/password/update" element={<UpdatePassword />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path="/order/confirm" element={<ConfirmOrder />} />
+          <Route path="/orders" element={<MyOrders />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
+          <Route path="/success" element={<OrderSuccess />} />
+          <Route path="/order/:id" element={<OrderDetails />} />
+        </Route>
+
         <Route
-          exact
-          path="/admin/dashboard"
           element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <Dashboard />
-            </Protected>
+            <Protected
+              isAuthenticated={isAuthenticated}
+              adminRoute={true}
+              isAdmin={true}
+            />
           }
-        />
-        <Route
-          exact
-          path="/admin/products"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <ProductList />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/product"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <NewProduct />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/product/:id"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <UpdateProduct />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/orders"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <OrderList />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/order/:id"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <ProcessOrder />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/users"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <UsersList />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/user/:id"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <UpdateUser />
-            </Protected>
-          }
-        />
-        <Route
-          exact
-          path="/admin/reviews"
-          element={
-            <Protected isAuthenticated={isAuthenticated}>
-              <ProductReviews />
-            </Protected>
-          }
-        />
+        >
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/products" element={<ProductList />} />
+          <Route path="/admin/product" element={<NewProduct />} />
+          <Route path="/admin/product/:id" element={<UpdateProduct />} />
+          <Route path="/admin/orders" element={<OrderList />} />
+          <Route path="/admin/order/:id" element={<ProcessOrder />} />
+          <Route path="/admin/users" element={<UsersList />} />
+          <Route path="/admin/user/:id" element={<UpdateUser />} />
+          <Route path="/admin/reviews" element={<ProductReviews />} />
+        </Route>
         <Route element={<NotFound />} />
       </Routes>
 

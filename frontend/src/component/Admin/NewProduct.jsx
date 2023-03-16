@@ -28,7 +28,6 @@ const NewProduct = () => {
   const [Stock, setStock] = useState(0);
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
-
   const categories = [
     "Laptop",
     "Footwear",
@@ -61,8 +60,7 @@ const NewProduct = () => {
     myForm.set("price", price);
     myForm.set("description", description);
     myForm.set("category", category);
-    myForm.set("Stock", Stock);
-
+    myForm.set("stock", Stock);
     images.forEach((image) => {
       myForm.append("images", image);
     });
@@ -80,6 +78,7 @@ const NewProduct = () => {
 
       reader.onload = () => {
         if (reader.readyState === 2) {
+          console.log(reader.result);
           setImagesPreview((old) => [...old, reader.result]);
           setImages((old) => [...old, reader.result]);
         }

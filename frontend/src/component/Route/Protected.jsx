@@ -1,8 +1,23 @@
-import { Navigate } from "react-router-dom";
-const Protected = ({ isAuthenticated, children }) => {
-  if (isAuthenticated === false) {
-    return <Navigate to="/login" replace />;
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+
+const ProtectedRoute = ({
+  isAuthenticated,
+  children,
+  adminRoute,
+  isAdmin,
+  redirect = "/login",
+  redirectAdmin = "/account",
+}) => {
+  if (!isAuthenticated) {
+    return <Navigate to={redirect} />;
   }
-  return children;
+
+  if (adminRoute && !isAdmin) {
+    return <Navigate to={redirectAdmin} />;
+  }
+
+  return children ? children : <Outlet />;
 };
-export default Protected;
+
+export default ProtectedRoute;

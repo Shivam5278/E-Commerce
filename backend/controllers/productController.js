@@ -7,27 +7,27 @@ const cloudinary = require("cloudinary");
 //Create Product -- Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   let images = [];
-
+  console.log(req.body);
   if (typeof req.body.images === "string") {
     images.push(req.body.images);
   } else {
     images = req.body.images;
   }
-
-  const imagesLink = [];
+  // console.log(images);
+  const imagesLinks = [];
 
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
       folder: "products",
-      width: 150,
-      crop: "scale",
     });
-    imagesLink.push({
+
+    imagesLinks.push({
       public_id: result.public_id,
       url: result.secure_url,
     });
   }
-  req.body.images = imagesLink;
+
+  req.body.images = imagesLinks;
   req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
