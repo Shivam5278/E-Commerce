@@ -9,7 +9,6 @@ const ProductCard = ({ product }) => {
     readOnly: true,
     precision: 0.5,
   };
-  console.log(product.images[0]);
 
   return (
     <Link className="productCard" to={`/product/${product._id}`}>

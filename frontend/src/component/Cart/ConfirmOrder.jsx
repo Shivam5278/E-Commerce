@@ -19,9 +19,9 @@ const ConfirmOrder = ({ history }) => {
 
   const shippingCharges = subtotal > 1000 ? 0 : 200;
 
-  const tax = subtotal * 0.18;
+  const tax = Math.round(subtotal * 0.18 * 100) / 100;
 
-  const totalPrice = subtotal + tax + shippingCharges;
+  const totalPrice = Math.round((subtotal + tax + shippingCharges) * 100) / 100;
 
   const address = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pinCode}, ${shippingInfo.country}`;
 

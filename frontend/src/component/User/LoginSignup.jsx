@@ -75,7 +75,7 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-  const redirect = "/account"; //searchParams ? searchParams.get("redirect") :
+  const redirect = searchParams ? searchParams.get("redirect") : "/account";
   const navigate = useNavigate();
   useEffect(() => {
     if (error) {
@@ -84,7 +84,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuthenticated) {
-      navigate(redirect);
+      navigate(`/${redirect}`);
     }
   }, [dispatch, error, alert, navigate, isAuthenticated, redirect]);
 

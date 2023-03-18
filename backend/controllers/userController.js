@@ -68,9 +68,7 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 
 //Forgot Password
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-  //console.log(req.body.email);
   const user = await User.findOne({ email: req.body.email });
-  // console.log(user, "aad");
 
   if (!user) {
     return next(new ErrorHandler("User not found", 404));
@@ -176,7 +174,6 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
-    // console.log(imageId);
 
     await cloudinary.v2.uploader.destroy(imageId);
 

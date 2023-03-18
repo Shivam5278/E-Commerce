@@ -1,12 +1,17 @@
 import "./App.css";
 
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
-import React, { useState } from "react";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { useSelector } from "react-redux";
 
 import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
 import About from "./component/layout/About/About.jsx";
+import UserOptions from "./component/layout/Header/UserOptions.jsx";
 import Contact from "./component/layout/Contact/Contact.jsx";
 import NotFound from "./component/layout/NotFound/NotFound.jsx";
 import Home from "./component/Home/Home.js";
@@ -20,8 +25,6 @@ import ResetPassword from "./component/User/ResetPassword.jsx";
 import UpdateProfile from "./component/User/UpdateProfile.jsx";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
-import UserOptions from "./component/layout/Header/UserOptions.jsx";
-import { useSelector } from "react-redux";
 import Protected from "./component/Route/Protected";
 import ForgotPassword from "./component/User/ForgotPassword";
 import Cart from "./component/Cart/Cart.js";
@@ -31,9 +34,6 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder.jsx";
 import OrderSuccess from "./component/Cart/OrderSuccess.jsx";
 import MyOrders from "./component/Order/MyOrders.jsx";
 import OrderDetails from "./component/Order/OrderDetails.jsx";
-import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 
 //Admin Imports
 import Dashboard from "./component/Admin/Dashboard.jsx";
@@ -50,11 +50,11 @@ function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  // async function getStripeApiKey() {
-  //   const { data } = await axios.get("/api/v1/stripeapikey");
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
 
-  //   setStripeApiKey(data.stripeApiKey);
-  // }
+    setStripeApiKey(data.stripeApiKey);
+  }
 
   React.useEffect(() => {
     WebFont.load({
@@ -64,10 +64,10 @@ function App() {
     });
 
     store.dispatch(loadUser());
-    //getStripeApiKey();
+    getStripeApiKey();
   }, []);
 
-  //window.addEventListener("contextmenu", (e) => e.preventDefault());
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <Router>
@@ -124,21 +124,13 @@ function App() {
         <Route element={<NotFound />} />
       </Routes>
 
-      {/* {stripeApiKey && (
+      {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
           <Routes>
-            <Route
-              exact
-              path="/process/payment"
-              element={
-                <Protected isAdmin={true} isAuthenticated={isAuthenticated}>
-                  <Payment />
-                </Protected>
-              }
-            />
+            <Route exact path="/process/payment" element={<Payment />} />
           </Routes>
         </Elements>
-      )} */}
+      )}
       <Footer />
     </Router>
   );
