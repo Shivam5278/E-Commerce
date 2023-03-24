@@ -3,7 +3,20 @@ import Sidebar from "./Sidebar.jsx";
 import "./dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+// import {
+//   Chart as ChartJS,
+//   ArcElement,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from "chart.js";
+import "chart.js/auto";
 import { Doughnut, Line } from "react-chartjs-2";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction.js";
@@ -45,8 +58,8 @@ const Dashboard = () => {
     datasets: [
       {
         label: "TOTAL AMOUNT",
-        backgroundColor: ["tomato"],
-        hoverBackgroundColor: ["rgb(197, 72, 49)"],
+        backgroundColor: "tomato",
+        hoverBackgroundColor: "rgb(197, 72, 49)",
         data: [0, totalAmount],
       },
     ],
@@ -93,13 +106,13 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* <div className="lineChart">
+        <div className="lineChart">
           <Line data={lineState} />
         </div>
 
         <div className="doughnutChart">
           <Doughnut data={doughnutState} />
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vmin;
+  height: 80vmin;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -14,7 +14,9 @@
 
 .banner > h1 {
   margin: 5vmax;
+  transform: translateY(-60px);
 
+  color: rgb(255, 255, 255);
   font: 600 2.5vmax "Roboto";
 }
 
@@ -37,17 +39,9 @@
   background-color: rgba(255, 255, 255, 0);
   color: white;
 }
-
-.banner::after {
-  content: "";
-  width: 100vw;
-  height: 100vmin;
-  background-color: #ffffff;
-  position: absolute;
-  top: 0%;
-  left: 0;
-  clip-path: polygon(100% 68%, 0 100%, 100% 100%);
-  max-width: 100%;
+#a123 {
+  color: rgb(0, 0, 0);
+  text-decoration-line: none;
 }
 
 .homeHeading {

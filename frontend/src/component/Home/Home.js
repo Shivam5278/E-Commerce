@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/loader/Loader";
 import { useAlert } from "react-alert";
+import Button from "@mui/material/Button";
 
 const Home = () => {
   const alert = useAlert();
@@ -30,13 +31,14 @@ const Home = () => {
           <MetaData title="Ecommerce" />
 
           <div className="banner">
+            {/* <Slider start={data.banner.start} /> */}
             <p>Welcome to Ecommerce</p>
             <h1>Find Amazin Products Below</h1>
 
             <a href="#container">
-              <button>
+              <Button variant="contained" id="a123">
                 Scroll <CgMouse />
-              </button>
+              </Button>
             </a>
           </div>
 

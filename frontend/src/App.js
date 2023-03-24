@@ -7,8 +7,10 @@ import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header from "./component/layout/Header/Header.js";
+import Navbar from "./component/layout/Header/Navbar";
+import PreNavbar from "./component/layout/Header/PreNavbar";
 import Footer from "./component/layout/Footer/Footer.js";
 import About from "./component/layout/About/About.jsx";
 import UserOptions from "./component/layout/Header/UserOptions.jsx";
@@ -67,11 +69,13 @@ function App() {
     getStripeApiKey();
   }, []);
 
-  window.addEventListener("contextmenu", (e) => e.preventDefault());
+  //window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
+      <Navbar />
+      <PreNavbar />
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route exact path="/" element={<Home />} />

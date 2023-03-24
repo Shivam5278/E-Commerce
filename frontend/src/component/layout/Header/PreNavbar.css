@@ -1,0 +1,30 @@
+.preNav {
+  background-color: rgb(29, 28, 28);
+
+  color: white;
+}
+
+.preNav > div {
+  padding: 0 4vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preNav > div svg:hover {
+  fill: white;
+}
+
+.preNav > div > a {
+  color: rgb(180, 180, 180);
+  font-size: 0.9vmax;
+  font-family: "Gill Sans", "Gill Sans MT", "Gill Sans", "Gill Sans MT", Calibri,
+    "Trebuchet MS", sans-serif;
+  font-weight: 300;
+  margin: 1vmax;
+  text-decoration: none;
+}
+
+.preNav > div > a:hover {
+  color: white;
+}
