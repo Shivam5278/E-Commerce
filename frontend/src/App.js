@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar from "./component/layout/Header/Navbar";
+import Header from "./component/layout/Header/Header";
 import PreNavbar from "./component/layout/Header/PreNavbar";
 import Footer from "./component/layout/Footer/Footer.js";
 import About from "./component/layout/About/About.jsx";
@@ -73,9 +74,9 @@ function App() {
 
   return (
     <Router>
-      {/* <Header /> */}
-      <Navbar />
-      <PreNavbar />
+      <Header />
+      {/* <Navbar /> */}
+      {/* <PreNavbar /> */}
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route exact path="/" element={<Home />} />
